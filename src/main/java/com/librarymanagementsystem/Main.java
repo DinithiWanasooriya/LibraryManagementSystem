@@ -3,9 +3,12 @@ package com.librarymanagementsystem;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import  java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -104,6 +107,62 @@ public class Main {
                     LibraryItem createMagazine = new Magazine(magazineNameStr,magazineAuthorStr,magazineSerialNumberStr);
                     library.addItem(createMagazine);
                 }
+
+            } else
+
+            if(mainOptionStr == 3){
+                System.out.println("Which user is going to buy the Items ?");
+                System.out.println("0. Sanath");
+                System.out.println("1. Thameera");
+                System.out.println("2. Ishari");
+                System.out.println("3. Jihan");
+                System.out.println("4. Kaushalya");
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                int userIndex;
+                try {
+                    userIndex = Integer.parseInt(reader.readLine());
+                } catch (NumberFormatException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Arrays array = null;
+                List<String> userNames = array.asList("Sanath", "Thameera", "Ishari", "Jihan", "Kaushalya");
+                if (userIndex < 0 || userIndex >= userNames.size()) {
+                    System.out.println("Invalid user selection. Please choose a valid index.");
+                    return;
+                }
+
+                String userName = userNames.get(userIndex);
+
+
+                System.out.println("What is the serial number of the item ?");
+                String serialNumber = reader.readLine();
+
+                library.getBorrowedItems().remove(serialNumber);
+                System.out.println("Item "+serialNumber+" is successfully borrwed by " + userName + ".");
+
+            } else
+
+            if(mainOptionStr == 4){
+                System.out.println("Which user is going to return the Items ?");
+                System.out.println("0. Sanath");
+                System.out.println("1. Thameera");
+                System.out.println("2. Ishari");
+                System.out.println("3. Jihan");
+                System.out.println("4. Kaushalya");
+
+                BufferedReader returnItemType = new BufferedReader(new InputStreamReader(System.in));
+                try {
+                    Integer.parseInt (returnItemType.readLine());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.out.println("What is the serial of the items");
+                new BufferedReader(new InputStreamReader(System.in)).readLine();
+
+
 
             } else if (mainOptionStr == 5) {
                 exit = true;
